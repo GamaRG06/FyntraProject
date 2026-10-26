@@ -1,0 +1,2 @@
+﻿@import 'tailwindcss';
+*{box-sizing:border-box}body{margin:0;background:#f8f9f3;font-family:'Segoe UI',Arial,sans-serif;-webkit-font-smoothing:antialiased}button,input,select{font-family:inherit}::selection{background:#dce7d0;color:#385531}

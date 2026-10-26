@@ -1,0 +1,37 @@
+﻿<div class="shell">
+ <aside>
+  <a href="./" class="brand"><b>f</b>fyntra<span>.</span></a>
+  <div class="workspace"><span>◈</span><div>Mi espacio personal<small>Un poco de orden, mucha calma</small></div></div>
+  <p class="nav-label">TU PLANIFICACIÓN</p>
+  <nav aria-label="Navegación principal">@for(item of ['Resumen','Mis gastos','Categorías'];track item;let i=$index){<button [class.active]="section()===item" (click)="section.set(item)"><span>{{['▦','☷','◫'][i]}}</span>{{item}}@if(item==='Mis gastos'){<small>{{monthly().length}}</small>}</button>}</nav>
+  <div class="sidebar-note"><span>✧</span><strong>Tu futuro, más tranquilo.</strong><p>Cada gasto que planeas es una sorpresa menos.</p><i></i></div>
+  <div class="profile"><span class="avatar">TÚ</span><div>Mi cuenta<small>Espacio personal</small></div><i></i></div>
+ </aside>
+ <main>
+  <header><div><span>Mi espacio</span><i>/</i>{{section()}}</div><small>● &nbsp; Vista de ejemplo</small></header>
+  <div class="content">
+   <section class="heading"><div><p class="eyebrow">MENOS INCERTIDUMBRE, MÁS CONTROL</p><h1>{{section()==='Resumen'?'Haz espacio para lo que viene.':section()==='Mis gastos'?'Tus planes, en orden.':'Cada gasto tiene su lugar.'}}</h1><p>Planea tus gastos de hoy y disfruta con más calma el mañana.</p></div><button class="primary" (click)="openForm()">＋ &nbsp; Nuevo gasto</button></section>
+   <div class="period"><div><button aria-label="Mes anterior" (click)="shiftMonth(-1)">‹</button><strong>▦ &nbsp; {{monthLabel()}}</strong><button aria-label="Mes siguiente" (click)="shiftMonth(1)">›</button></div><small>Todos los montos en MXN</small></div>
+   @if(section()==='Resumen'){
+    <section class="stats" aria-label="Resumen mensual"><article class="featured"><div>Total planeado <span>↗</span></div><h2>{{total()|currency:'MXN':'symbol-narrow':'1.2-2'}}</h2><p>{{monthly().length}} gastos para este mes</p></article><article><div>Por pagar <span class="amber">◷</span></div><h2>{{total()-paid()|currency:'MXN':'symbol-narrow':'1.2-2'}}</h2><p>● &nbsp; {{pending().length}} gastos pendientes</p></article><article><div>Ya pagado <span class="green">✓</span></div><h2>{{paid()|currency:'MXN':'symbol-narrow':'1.2-2'}}</h2><p>● &nbsp; {{monthly().length-pending().length}} gastos completados</p></article></section>
+   }
+   <div class="grid" [class.wide]="section()!=='Resumen'">
+    @if(section()!=='Categorías'){
+    <section class="panel"><div class="panel-heading"><div><h2>Gastos del mes <small>{{monthly().length}}</small></h2><p>Todo lo que tienes en mente, en un solo lugar.</p></div><span>☷</span></div>
+     <div class="filters" role="group" aria-label="Filtrar gastos">@for(tab of ['Todos','Pendientes','Pagados'];track tab){<button [class.selected]="filter()===tab" (click)="filter.set(tab)">{{tab}}</button>}</div>
+     <div class="table-head"><span>GASTO</span><span>FECHA</span><span>MONTO</span><span>ESTADO</span></div>
+     @for(e of visible();track e.id){<div class="expense-row"><div class="expense-name"><span class="expense-icon" [attr.data-category]="e.category">{{e.category==='Hogar'?'⌂':e.category==='Servicios'?'ϟ':e.category==='Alimentación'?'♧':e.category==='Transporte'?'↗':'♫'}}</span><div><strong>{{e.name}}</strong><small>{{e.category}}</small></div></div><span class="date">{{e.date.slice(8)}} {{monthLabel().slice(0,3)}}</span><strong class="amount">{{e.amount|currency:'MXN':'symbol-narrow':'1.2-2'}}</strong><button class="status" [class.paid]="e.paid" (click)="toggle(e.id)" [attr.aria-label]="(e.paid?'Marcar como pendiente: ':'Marcar como pagado: ')+e.name">{{e.paid?'✓':'○'}} &nbsp;{{e.paid?'Pagado':'Pendiente'}}</button></div>}
+     @empty{<div class="empty"><span>✧</span><h3>Un mes por planear</h3><p>No hay gastos en esta vista.</p><button class="primary" (click)="openForm()">Agregar gasto</button></div>}
+     <div class="table-footer">Un paso a la vez también es avanzar.<span>✧</span></div>
+    </section>}
+    @if(section()!=='Mis gastos'){
+    <section class="panel categories"><div class="panel-heading"><div><h2>Por categoría</h2><p>¿A dónde irá tu dinero?</p></div><span>◫</span></div><div class="donut" [style.background]="total()?gradient():'#e9ede3'"><div><small>Total del mes</small><strong>{{total()|currency:'MXN':'symbol-narrow':'1.0-0'}}</strong></div></div><div class="category-list">@for(c of categories;track c;let i=$index){<div><i [style.background]="['#477967','#a0b89b','#d7bd8c','#a7b8cf','#cdb9d6'][i]"></i><span>{{c}}</span><strong>{{categoryTotal(c)|currency:'MXN':'symbol-narrow':'1.0-0'}}</strong></div>}</div><p class="caption">Un plan claro empieza con pequeños detalles.</p></section>}
+   </div>
+   <section class="gentle-note"><span>☀</span><div><strong>Planear también es cuidarte.</strong><p>No necesitas tener todo resuelto. Empieza con tu próximo gasto.</p></div><i>✧</i></section>
+   <footer>Hecho para darle tranquilidad a tus planes.<span>fyntra · Tu dinero, con intención.</span></footer>
+  </div>
+ </main>
+</div>
+@if(showForm()){
+ <div class="backdrop" (click)="showForm.set(false)"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="form-title" (click)="$event.stopPropagation()" (keydown.escape)="showForm.set(false)"><div class="modal-heading"><h2 id="form-title">Un nuevo gasto en tu plan</h2><button aria-label="Cerrar" (click)="showForm.set(false)">×</button></div><p>Reserva un lugar para lo que viene.</p><form (ngSubmit)="save()"><label>Nombre del gasto<input name="name" [(ngModel)]="draft.name" placeholder="Ej. Internet en casa" required maxlength="80"></label><div class="form-columns"><label>Monto (MXN)<input name="amount" type="number" [(ngModel)]="draft.amount" min="0.01" step="0.01" required placeholder="0.00"></label><label>Fecha prevista<input name="date" type="date" [(ngModel)]="draft.date" required></label></div><label>Categoría<select name="category" [(ngModel)]="draft.category">@for(c of categories;track c){<option>{{c}}</option>}</select></label><p class="form-note">Plantilla de ejemplo: los cambios duran hasta recargar la página.</p><button class="primary" type="submit">Agregar a mi plan</button></form></section></div>
+}
