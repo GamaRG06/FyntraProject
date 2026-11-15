@@ -1,0 +1,60 @@
+<section class="panel">
+  <div class="panel-heading">
+    <div>
+      <h2>
+        Gastos del mes <small>{{ expenses().length }}</small>
+      </h2>
+      <p>Todo lo que tienes en mente, en un solo lugar.</p>
+    </div>
+    <span>☷</span>
+  </div>
+  <div class="filters" role="group" aria-label="Filtrar gastos">
+    @for (tab of ['Todos', 'Pendientes', 'Pagados']; track tab) {
+      <button [class.selected]="filter() === tab" (click)="filterChange.emit(tab)">
+        {{ tab }}
+      </button>
+    }
+  </div>
+  <div class="table-head">
+    <span>GASTO</span><span>FECHA</span><span>MONTO</span><span>ESTADO</span>
+  </div>
+  @for (e of visible(); track e.id) {
+    <div class="expense-row">
+      <div class="expense-name">
+        <span class="expense-icon" [attr.data-category]="e.category">{{
+          e.category === 'Hogar'
+            ? '⌂'
+            : e.category === 'Servicios'
+              ? 'ϟ'
+              : e.category === 'Alimentación'
+                ? '♧'
+                : e.category === 'Transporte'
+                  ? '↗'
+                  : '♫'
+        }}</span>
+        <div>
+          <strong>{{ e.name }}</strong
+          ><small>{{ e.category }}</small>
+        </div>
+      </div>
+      <span class="date">{{ e.date.slice(8) }} {{ monthLabel().slice(0, 3) }}</span
+      ><strong class="amount">{{ e.amount | currency: 'MXN' : 'symbol-narrow' : '1.2-2' }}</strong
+      ><button
+        class="status"
+        [class.paid]="e.paid"
+        (click)="toggleExpense.emit(e.id)"
+        [attr.aria-label]="(e.paid ? 'Marcar como pendiente: ' : 'Marcar como pagado: ') + e.name"
+      >
+        {{ e.paid ? '✓' : '○' }} &nbsp;{{ e.paid ? 'Pagado' : 'Pendiente' }}
+      </button>
+    </div>
+  } @empty {
+    <div class="empty">
+      <span>✧</span>
+      <h3>Un mes por planear</h3>
+      <p>No hay gastos en esta vista.</p>
+      <button class="primary" (click)="newExpense.emit()">Agregar gasto</button>
+    </div>
+  }
+  <div class="table-footer">Un paso a la vez también es avanzar.<span>✧</span></div>
+</section>

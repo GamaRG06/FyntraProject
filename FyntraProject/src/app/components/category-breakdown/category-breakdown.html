@@ -1,0 +1,25 @@
+<section class="panel categories">
+  <div class="panel-heading">
+    <div>
+      <h2>Por categoría</h2>
+      <p>¿A dónde irá tu dinero?</p>
+    </div>
+    <span>◫</span>
+  </div>
+  <div class="donut" [style.background]="total() ? gradient() : '#e9ede3'">
+    <div>
+      <small>Total del mes</small
+      ><strong>{{ total() | currency: 'MXN' : 'symbol-narrow' : '1.0-0' }}</strong>
+    </div>
+  </div>
+  <div class="category-list">
+    @for (c of categories(); track c; let i = $index) {
+      <div>
+        <i [style.background]="['#477967', '#a0b89b', '#d7bd8c', '#a7b8cf', '#cdb9d6'][i]"></i
+        ><span>{{ c }}</span
+        ><strong>{{ categoryTotal(c) | currency: 'MXN' : 'symbol-narrow' : '1.0-0' }}</strong>
+      </div>
+    }
+  </div>
+  <p class="caption">Un plan claro empieza con pequeños detalles.</p>
+</section>

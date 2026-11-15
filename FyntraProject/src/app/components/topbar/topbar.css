@@ -1,0 +1,57 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+button {
+  cursor: pointer;
+  font: inherit;
+  transition: background 0.2s;
+}
+button:hover {
+  filter: brightness(0.96);
+}
+button:focus-visible {
+  outline: 3px solid #a9bba0;
+  outline-offset: 4px;
+}
+a:focus-visible {
+  outline: 3px solid #a9bba0;
+  outline-offset: 4px;
+}
+header {
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 42px;
+  border-bottom: 1px solid #e6eade;
+  background: #fcfcf8;
+  font-size: 11px;
+}
+header div > span {
+  color: #9ba58e;
+}
+header i {
+  font-style: normal;
+  margin: 0 15px;
+  color: #c5cebb;
+}
+header > small {
+  font-size: 10px;
+  color: #9da88f;
+}
+@media (max-width: 1200px) {
+  header {
+    padding: 0 25px;
+  }
+}
+@media (max-width: 700px) {
+  header {
+    height: 48px;
+    padding: 0 22px;
+    font-size: 10px;
+  }
+  header > small {
+    font-size: 9px;
+  }
+}

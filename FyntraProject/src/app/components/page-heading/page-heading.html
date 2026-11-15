@@ -1,0 +1,16 @@
+<section class="heading">
+  <div>
+    <p class="eyebrow">MENOS INCERTIDUMBRE, MÁS CONTROL</p>
+    <h1>
+      {{
+        section() === 'Resumen'
+          ? 'Haz espacio para lo que viene.'
+          : section() === 'Mis gastos'
+            ? 'Tus planes, en orden.'
+            : 'Cada gasto tiene su lugar.'
+      }}
+    </h1>
+    <p>Planea tus gastos de hoy y disfruta con más calma el mañana.</p>
+  </div>
+  <button class="primary" (click)="newExpense.emit()">＋ &nbsp; Nuevo gasto</button>
+</section>

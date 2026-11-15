@@ -1,0 +1,261 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+button {
+  cursor: pointer;
+  font: inherit;
+  transition: background 0.2s;
+}
+button:hover {
+  filter: brightness(0.96);
+}
+button:focus-visible {
+  outline: 3px solid #a9bba0;
+  outline-offset: 4px;
+}
+a:focus-visible {
+  outline: 3px solid #a9bba0;
+  outline-offset: 4px;
+}
+aside {
+  width: 230px;
+  flex-shrink: 0;
+  padding: 36px 22px 23px;
+  background: #fdfdfb;
+  border-right: 1px solid #e5e9df;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #345841;
+  font-size: 32px;
+  font-weight: 750;
+  letter-spacing: -1.5px;
+  padding: 0 12px;
+}
+.brand b {
+  display: grid;
+  place-items: center;
+  font-family: Georgia, serif;
+  font-size: 35px;
+  background: #3a604a;
+  color: #fff;
+  border-radius: 10px;
+  width: 35px;
+  height: 37px;
+  margin-right: 10px;
+}
+.brand > span {
+  color: #a1b18a;
+}
+.workspace {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin: 38px 7px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.workspace > span {
+  font-size: 26px;
+  color: #819474;
+}
+.workspace small {
+  display: block;
+  margin-top: 5px;
+  font-size: 8px;
+  color: #98a18f;
+  font-weight: 400;
+}
+.nav-label {
+  font-size: 9px;
+  letter-spacing: 1.4px;
+  color: #9ba591;
+  padding-left: 13px;
+  margin: 0 0 14px;
+}
+nav {
+  display: grid;
+  gap: 7px;
+}
+nav button {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  border: 0;
+  border-radius: 6px;
+  padding: 12px 15px;
+  background: transparent;
+  color: #8c9783;
+  font-size: 12px;
+  text-align: left;
+}
+nav button.active {
+  background: #eaf0e3;
+  color: #46613a;
+  font-weight: 600;
+}
+nav button > span {
+  font-size: 20px;
+  width: 20px;
+}
+nav small {
+  margin-left: auto;
+  background: #dfe8d5;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 9px;
+}
+.sidebar-note {
+  margin: auto 5px 30px;
+  background: #f2f4e9;
+  border: 1px solid #e8ecdc;
+  border-radius: 8px;
+  padding: 20px 16px;
+}
+.sidebar-note > span {
+  display: block;
+  font-size: 26px;
+  color: #91a174;
+  margin-bottom: 11px;
+}
+.sidebar-note strong {
+  font-size: 11px;
+}
+.sidebar-note p {
+  font-size: 10px;
+  line-height: 1.8;
+  color: #9ba48d;
+}
+.sidebar-note i {
+  display: block;
+  width: 45px;
+  height: 3px;
+  background: #d8e1c6;
+  border-radius: 4px;
+}
+.profile {
+  display: flex;
+  gap: 11px;
+  align-items: center;
+  border-top: 1px solid #e8ecdf;
+  padding: 21px 5px 0;
+  font-size: 11px;
+}
+.avatar {
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  background: #e9ecdf;
+  color: #859175;
+  font-size: 9px;
+}
+.profile small {
+  display: block;
+  font-size: 9px;
+  color: #a0aa93;
+  margin-top: 4px;
+}
+.profile i {
+  margin-left: auto;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #9bad85;
+}
+@media (max-width: 1200px) {
+  aside {
+    width: 200px;
+    padding-inline: 14px;
+  }
+}
+@media (max-width: 1000px) {
+  aside {
+    width: 180px;
+  }
+  .brand {
+    font-size: 28px;
+    padding: 0 8px;
+  }
+  .workspace {
+    font-size: 10px;
+  }
+  .workspace small {
+    font-size: 7px;
+  }
+  .sidebar-note {
+    padding: 16px 10px;
+  }
+}
+@media (max-width: 700px) {
+  aside {
+    position: static;
+    width: 100%;
+    height: auto;
+    padding: 18px 20px;
+    border-right: 0;
+    border-bottom: 1px solid #e4eadc;
+  }
+  .brand {
+    font-size: 27px;
+  }
+  .brand b {
+    width: 29px;
+    height: 32px;
+    font-size: 30px;
+  }
+  .workspace {
+    display: none;
+  }
+  .nav-label {
+    display: none;
+  }
+  .sidebar-note {
+    display: none;
+  }
+  .profile {
+    display: none;
+  }
+  nav {
+    display: flex;
+    gap: 8px;
+    margin-top: 19px;
+  }
+  nav button {
+    flex: 1;
+    justify-content: center;
+    padding: 9px 10px;
+    font-size: 11px;
+    gap: 7px;
+  }
+  nav button > span {
+    font-size: 17px;
+  }
+  nav small {
+    display: none;
+  }
+}
+:host {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  flex-shrink: 0;
+}
+aside {
+  position: static;
+}
+@media (max-width: 700px) {
+  :host {
+    position: static;
+    height: auto;
+  }
+}

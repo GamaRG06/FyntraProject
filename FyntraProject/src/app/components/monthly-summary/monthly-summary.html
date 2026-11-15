@@ -1,0 +1,17 @@
+<section class="stats" aria-label="Resumen mensual">
+  <article class="featured">
+    <div>Total planeado <span>↗</span></div>
+    <h2>{{ total() | currency: 'MXN' : 'symbol-narrow' : '1.2-2' }}</h2>
+    <p>{{ expenseCount() }} gastos para este mes</p>
+  </article>
+  <article>
+    <div>Por pagar <span class="amber">◷</span></div>
+    <h2>{{ total() - paid() | currency: 'MXN' : 'symbol-narrow' : '1.2-2' }}</h2>
+    <p>● &nbsp; {{ pendingCount() }} gastos pendientes</p>
+  </article>
+  <article>
+    <div>Ya pagado <span class="green">✓</span></div>
+    <h2>{{ paid() | currency: 'MXN' : 'symbol-narrow' : '1.2-2' }}</h2>
+    <p>● &nbsp; {{ expenseCount() - pendingCount() }} gastos completados</p>
+  </article>
+</section>

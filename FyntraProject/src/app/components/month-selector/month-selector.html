@@ -1,0 +1,8 @@
+<div class="period">
+  <div>
+    <button aria-label="Mes anterior" (click)="monthChange.emit(-1)">‹</button
+    ><strong>▦ &nbsp; {{ monthLabel() }}</strong
+    ><button aria-label="Mes siguiente" (click)="monthChange.emit(1)">›</button>
+  </div>
+  <small>Todos los montos en MXN</small>
+</div>

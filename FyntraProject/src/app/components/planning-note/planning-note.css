@@ -1,0 +1,63 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+button {
+  cursor: pointer;
+  font: inherit;
+  transition: background 0.2s;
+}
+button:hover {
+  filter: brightness(0.96);
+}
+button:focus-visible {
+  outline: 3px solid #a9bba0;
+  outline-offset: 4px;
+}
+a:focus-visible {
+  outline: 3px solid #a9bba0;
+  outline-offset: 4px;
+}
+.gentle-note {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  background: #f0f3e8;
+  border: 1px solid #e6ecda;
+  border-radius: 8px;
+  padding: 20px 23px;
+  margin-top: 25px;
+}
+.gentle-note > span {
+  font-size: 29px;
+  color: #9aaa7d;
+}
+.gentle-note strong {
+  font-size: 11px;
+  font-weight: 550;
+  color: #7e8f68;
+}
+.gentle-note p {
+  font-size: 10px;
+  color: #a7b094;
+  margin: 6px 0 0;
+}
+.gentle-note i {
+  margin-left: auto;
+  font-style: normal;
+  font-size: 27px;
+  color: #bdcaaa;
+}
+@media (max-width: 700px) {
+  .gentle-note {
+    padding: 17px;
+    gap: 12px;
+  }
+  .gentle-note p {
+    font-size: 9px;
+    line-height: 1.7;
+  }
+  .gentle-note i {
+    display: none;
+  }
+}

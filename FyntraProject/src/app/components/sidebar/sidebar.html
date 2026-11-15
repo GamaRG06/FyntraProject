@@ -1,0 +1,29 @@
+<aside>
+  <a href="./" class="brand"><b>f</b>fyntra<span>.</span></a>
+  <div class="workspace">
+    <span>◈</span>
+    <div>Mi espacio personal<small>Un poco de orden, mucha calma</small></div>
+  </div>
+  <p class="nav-label">TU PLANIFICACIÓN</p>
+  <nav aria-label="Navegación principal">
+    @for (item of ['Resumen', 'Mis gastos', 'Categorías']; track item; let i = $index) {
+      <button [class.active]="section() === item" (click)="sectionChange.emit(item)">
+        <span>{{ ['▦', '☷', '◫'][i] }}</span
+        >{{ item }}
+        @if (item === 'Mis gastos') {
+          <small>{{ expenseCount() }}</small>
+        }
+      </button>
+    }
+  </nav>
+  <div class="sidebar-note">
+    <span>✧</span><strong>Tu futuro, más tranquilo.</strong>
+    <p>Cada gasto que planeas es una sorpresa menos.</p>
+    <i></i>
+  </div>
+  <div class="profile">
+    <span class="avatar">TÚ</span>
+    <div>Mi cuenta<small>Espacio personal</small></div>
+    <i></i>
+  </div>
+</aside>
